@@ -48,11 +48,23 @@ const App = () => {
       .create(personObject)
         .then(returnedPerson => {
         setPersons(persons.concat(returnedPerson))
-        })
         setMessage(`${newName} was added to phonebook`)
         setTimeout(() => {
           setMessage(null)
-        },5000)}
+        },5000)
+        })
+        .catch(error => {
+          setErrorMessage(
+            error.response.data.error
+          )
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
+          
+        })
+        
+       
+      }
       
     setNewName('')
     setNewNumber('')
@@ -66,8 +78,9 @@ const App = () => {
       setPersons(persons.filter(person => person.id !== id))  
       })
     .catch(error => {
+      console.log('poisto', error.response.data.error)
       setErrorMessage(
-        `${personToName.name} was allready removed from server`
+        error.response.data.error
       )
       setTimeout(() => {
         setErrorMessage(null)
