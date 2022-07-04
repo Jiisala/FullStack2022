@@ -1,9 +1,11 @@
 POST http://localhost:3003/api/blogs/
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvaW5lbiIsImlkIjoiNjJiZGI2MWZiMjdkYzEwMGJiNjNhZTJkIiwiaWF0IjoxNjU2NjAzNjUwfQ.ZD4KIMkgGCHPpjMnjw2b_hEIPf05ABiIZDeGTuC1PME
 
 {
-  "title": "testiblogi_798",
-  "author": "Liisa Lupsakka",
+  "title": "ihaneritestiMOINEN_uusitesti",
+  "author": "Toinen Moinen",
   "url": "www.MeKaikkiAsummeKuussa.moon",
   "likes": 8
+  //"userId": "62bc3b11f0fd0518efe84a06"
 }

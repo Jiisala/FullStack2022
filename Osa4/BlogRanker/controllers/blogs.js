@@ -1,28 +1,61 @@
 const blogRouter = require('express').Router()
 const Blog = require('../models/blog')
-const { mostLikes } = require('../utils/list_helper')
+
 
 blogRouter.get('/', async (request, response) => {
-  const blogs = await Blog.find({})
+  const blogs = await Blog
+    .find({})
+    .populate('user',{ username:1, name:1 })
   response.json(blogs)
 })
+blogRouter.get('/:id', async (request, response) => {
+  const blog = await Blog.findById(request.params.id)
+  if (!blog) {
+    response.status(404).end()
+  }
+  response.json(blog.toJSON())
+})
 
-blogRouter.post('/', async (request, response, next) => {
-  const blog = new Blog(request.body)
+blogRouter.post('/', async (request, response) => {
+  const body = request.body
+
+  const user = request.user
+  if (!user){
+    return response.status(401).json({
+      error: 'muista tarkistaa miksi errorHandleri ei saanut tätä kiinni' }
+    )
+  }
+  const blog = new Blog({
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes,
+    user: user._id
+  })
+
   if (!blog.title || !blog.author || !blog.url){
     return response.status(400).json({
       error: 'missing fields'
     })
   }
-  try {
-    const savedBlog = await blog.save()
-    response.status(201).json(savedBlog)
-  } catch(exception) {
-    next(exception)
-  }
+
+  const savedBlog = await blog.save()
+  user.blogs = user.blogs.concat(savedBlog._id)
+  await user.save()
+  response.status(201).json(savedBlog)
+
 })
 
 blogRouter.delete('/:id', async (request, response) => {
+
+  const user = request.user
+  const blog = await Blog.findById(request.params.id)
+
+  if (!(blog.user.toString() === user.id.toString())){
+    return response.status(401).json(
+      { error: 'only the author can delete' }
+    )
+  }
   await Blog.findByIdAndRemove(request.params.id)
   response.status(204).end()
 })
