@@ -3,3 +3,4 @@
 Osa4/BlogRanker/node_modules
 /esim
 .env
+/coverage
