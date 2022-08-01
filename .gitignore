@@ -1,6 +1,15 @@
 /part1
 /node_modules
 Osa4/BlogRanker/node_modules
+Osa6/redux-anecdotes/node_modules
+Osa6/unicafe-redux/node_modules
+Osa7/ultimate-hooks/node_modules
+Osa7/routed-anecdotes/node_modules
+Osa7/country-hook/node_modules
+Osa7/BlogList_2.0/server/node_modules
+Osa7/BlogList_2.0/client/node_modules
+Osa7/Bloglist_2.0/client/coverage
 /esim
 .env
 /coverage
+/osa6_redux_version
