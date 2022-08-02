@@ -24,8 +24,7 @@ const Blog = ({ blog, addLike, deleteBlog, userName }) => {
 
       {visible && (
         <div>
-          details: <br/>
-          <Link href= {blog.url}>{blog.url} </Link><br />
+          details: <Link href= {blog.url}>{blog.url} </Link><br />
           likes: {blog.likes}
           <Button id="like-button"  onClick={handleLike}>
             {' '}

@@ -77,4 +77,5 @@ const NewBlogForm = ({ blogFormRef }) => {
     </div>
   )
 }
+
 export default NewBlogForm

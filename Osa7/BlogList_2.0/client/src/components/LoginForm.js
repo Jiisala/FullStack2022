@@ -28,6 +28,7 @@ const LoginForm = () => {
             id="username"
             type="text"
             name="Username"
+            autoComplete="username"
           />
         </div>
         <div>
@@ -36,6 +37,7 @@ const LoginForm = () => {
             id="password"
             type="password"
             name="Password"
+            autoComplete="current-password"
           />
         </div>
         <Button id="login-button" type="submit">

@@ -34,7 +34,6 @@ const App = () => {
         <DisplayBlogs />
       </Page>
     </div>
-
   )
 }
 
